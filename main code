@@ -1,0 +1,36 @@
+import random
+
+def creditcardgen():
+    l = list(map(int, input("enter issuers identification number").strip()))
+    n = int(input("enter length of credit card number"))
+   
+    a = n - len(l)
+    for i in range(a-1):
+        value = random.randint(0, 9)
+        l.append(value)
+    l.append(0)
+   
+   
+    t = check_creditcardnum(l)
+    l[-1] = 10 - t
+    l=''.join(map(str,l))
+    print(l)
+    
+  
+
+def check_creditcardnum(l):
+    sum1 = 0
+    sum2 = 0
+    for i in range(len(l)):
+        if i % 2 == 0:
+            sum1 += l[i]
+        else:
+            double = l[i] * 2
+            if double < 10:
+                sum2 += double
+            else:
+                sum2 += double % 10 + double // 10
+    t = (sum1 + sum2) % 10
+    return t
+
+creditcardgen()
