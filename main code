@@ -12,7 +12,8 @@ def creditcardgen():
    
    
     t = check_creditcardnum(l)
-    l[-1] = 10 - t
+    if(t!=0):
+        l[-1] = 10 - t
     l=''.join(map(str,l))
     print(l)
     
